@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mission Control
 
-## Getting Started
+My portfolio, built as the thing I do: a console you can search, a live log of what I'm shipping, and an MCP server so Claude can answer questions about my work.
 
-First, run the development server:
+- `/` the console, current mission, ship log (latest commits from GitHub), projects and record
+- `/facts` the same information as one plain page
+- `/mcp` an MCP server (Streamable HTTP, stateless). Tools: `get_profile`, `list_projects`, `get_project`, `get_current_mission`, `get_recent_activity`
+
+Everything the site says comes from one file: [`content/profile.ts`](content/profile.ts).
+
+## Connect it to Claude
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+claude mcp add --transport http vishal-vana https://<site>/mcp
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+On claude.ai: Settings → Connectors → Add custom connector, and paste the `/mcp` URL.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Run it
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Optional: set `GITHUB_TOKEN` to raise the GitHub API rate limit for the ship log.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with Next.js 16.
