@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { mission, profile, projects, statusLabel, type Project } from "@/content/profile";
+import { asciiPortrait, isDark, themeColors } from "@/lib/portrait";
 
 type Line = { kind: "you" | "out" | "dim"; body: ReactNode };
 
@@ -34,7 +35,7 @@ function respond(input: string): Line[] | "clear" {
   if (cmd === "help")
     return [
       { kind: "out", body: "Type any keyword to search my work, or one of these:" },
-      { kind: "dim", body: "projects · now · mcp · contact · facts · clear" },
+      { kind: "dim", body: "projects · now · mcp · contact · facts · whoami · clear" },
     ];
   if (cmd === "projects") return projects.map((p) => ({ kind: "out", body: projectLine(p) }));
   if (cmd === "now")
@@ -83,6 +84,20 @@ export function Console() {
   }, [lines]);
 
   function run(input: string) {
+    if (input.trim().toLowerCase() === "whoami") {
+      setLines((prev) => [...prev, { kind: "you", body: "> whoami" }, { kind: "dim", body: "reading CAM-01…" }]);
+      // The console is drawn in ink, so its ground is dark exactly when the ink colour is dark
+      asciiPortrait(isDark(themeColors().ink)).then(
+        (art) =>
+          setLines((prev) => [
+            ...prev.slice(0, -1),
+            { kind: "out", body: <pre aria-label="ASCII portrait of Vishal Vana">{art}</pre> },
+            { kind: "out", body: `${profile.name}. ${profile.role}.` },
+          ]),
+        () => setLines((prev) => [...prev.slice(0, -1), { kind: "dim", body: "Camera offline. Try again." }]),
+      );
+      return;
+    }
     const reply = respond(input);
     if (reply === "clear") return setLines([]);
     if (!input.trim()) return;

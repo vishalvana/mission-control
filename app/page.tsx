@@ -5,6 +5,7 @@ import { getShipLog } from "@/lib/github";
 import { Clocks, DaysLeft } from "@/components/Clocks";
 import { Console } from "@/components/Console";
 import { CopyButton } from "@/components/CopyButton";
+import { Portrait } from "@/components/Portrait";
 
 const SITE = process.env.SITE_URL ?? (process.env.VERCEL ? "https://vishalvana.vercel.app" : "http://localhost:3000");
 const MCP_URL = `${SITE}/mcp`;
@@ -53,21 +54,24 @@ export default function Home() {
 
       <main className="deck">
         <section className="panel identity span-7" aria-labelledby="who-h">
-          <span className="who">
-            {profile.role} · {profile.location}
-          </span>
-          <h1 id="who-h">
-            I build AI agents and automations that <em>do real work.</em>
-          </h1>
-          <p className="intro">{profile.intro}</p>
-          <div className="actions">
-            <a className="btn primary" href="#projects">
-              See what I&apos;ve built
-            </a>
-            <Link className="btn" href="/facts">
-              Just the facts
-            </Link>
+          <div className="identity-text">
+            <span className="who">
+              {profile.role} · {profile.location}
+            </span>
+            <h1 id="who-h">
+              I build AI agents and automations that <em>do real work.</em>
+            </h1>
+            <p className="intro">{profile.intro}</p>
+            <div className="actions">
+              <a className="btn primary" href="#projects">
+                See what I&apos;ve built
+              </a>
+              <Link className="btn" href="/facts">
+                Just the facts
+              </Link>
+            </div>
           </div>
+          <Portrait />
         </section>
 
         <Console />
