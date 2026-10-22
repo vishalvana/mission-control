@@ -6,9 +6,7 @@ import { Clocks, DaysLeft } from "@/components/Clocks";
 import { Console } from "@/components/Console";
 import { CopyButton } from "@/components/CopyButton";
 
-const SITE = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
+const SITE = process.env.SITE_URL ?? (process.env.VERCEL ? "https://vishalvana.vercel.app" : "http://localhost:3000");
 const MCP_URL = `${SITE}/mcp`;
 const CLAUDE_CODE_CMD = `claude mcp add --transport http vishal-vana ${MCP_URL}`;
 
