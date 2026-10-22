@@ -302,7 +302,7 @@ export function Portrait() {
   return (
     <figure className="feed">
       <div className="feed-head">
-        <span>CAM-01 · operator</span>
+        <span>CAM-01</span>
         {hasDepth ? (
           <span className="feed-modes" role="group" aria-label="Portrait view">
             {(["sensor", "depth"] as const).map((m) => (

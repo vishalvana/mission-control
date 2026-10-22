@@ -163,6 +163,23 @@ a:hover { text-decoration-color: var(--signal); }
 @media (max-width: 560px) { .log li { grid-template-columns: 64px minmax(0, 1fr); } .log .repo { grid-column: 2; } .log a { grid-column: 1 / -1; } }
 .muted { color: var(--ink-2); margin: 0; }
 
+/* What I build */
+.caps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.cap { padding: 16px 18px 4px 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.cap + .cap { padding-left: 18px; border-left: 1px solid var(--rule); }
+.cap h3 { margin: 0; font-family: var(--display); font-stretch: 112%; font-weight: 700; font-size: 18px; text-transform: uppercase; line-height: 1.1; }
+.cap p { margin: 0; }
+.cap .proof { display: flex; flex-wrap: wrap; gap: 4px 12px; font-family: var(--mono); font-size: 12px; color: var(--signal-ink); margin-top: auto; padding-top: 6px; }
+@media (max-width: 900px) {
+  .caps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cap:nth-child(3) { padding-left: 0; border-left: 0; }
+  .cap:nth-child(n + 3) { border-top: 1px solid var(--rule); }
+}
+@media (max-width: 560px) {
+  .caps { grid-template-columns: 1fr; }
+  .cap + .cap { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }
+}
+
 /* Projects table */
 .table-wrap { overflow-x: auto; }
 table.projects { width: 100%; border-collapse: collapse; min-width: 760px; }

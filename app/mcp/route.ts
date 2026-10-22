@@ -1,7 +1,7 @@
 // A small, stateless MCP server (Streamable HTTP transport, JSON responses).
 // Point any MCP client at https://<site>/mcp and ask about Vishal's work.
 
-import { experience, mission, profile, projects, research, statusLabel } from "@/content/profile";
+import { capabilities, experience, mission, profile, projects, research, statusLabel } from "@/content/profile";
 import { getShipLog } from "@/lib/github";
 
 const SERVER_INFO = { name: "vishal-vana", title: "Vishal Vana", version: "1.0.0" };
@@ -37,6 +37,9 @@ const TOOLS: Tool[] = [
         profile.intro,
         "",
         ...profile.about,
+        "",
+        "What he builds:",
+        ...capabilities.map((c) => `- ${c.title}: ${c.line}`),
         "",
         "Experience and education:",
         ...experience.map((e) => `- ${e.when}: ${e.what}, ${e.where}${e.note ? `. ${e.note}` : ""}`),

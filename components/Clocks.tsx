@@ -36,6 +36,6 @@ export function DaysLeft({ due }: { due: string }) {
   const now = useNow();
   if (!now) return <b>--</b>;
   const end = new Date(`${due}T23:59:59+05:30`).getTime();
-  const days = Math.ceil((end - now.getTime()) / 86_400_000);
+  const days = Math.floor((end - now.getTime()) / 86_400_000); // whole days before the due date
   return <b>{days > 1 ? `${days} days left` : days === 1 ? "Due tomorrow" : days === 0 ? "Due today" : "Shipped or overdue"}</b>;
 }

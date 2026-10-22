@@ -23,11 +23,11 @@ export const profile = {
   location: "India (IST, UTC+5:30)",
   headline: "I build AI agents and automations that do real work.",
   intro:
-    "Backends, mobile apps, scrapers, and lately agents. I'm not tied to a stack: give me the problem and I'll pick the tools.",
+    "11 builds so far, from multi-tenant backends to apps that talk to hardware. Now I build AI agents and the backends they run on. Give me the problem; I'll pick the tools.",
   about: [
-    "I started out building Android apps and Spring Boot backends, and I still like the parts most people skip: auth, caching, load balancing, the plumbing that decides whether a system holds up.",
-    "These days my focus is AI agents and automation. I use AI tools the way a trained engineer uses any good tool: to go faster on things I already understand.",
-    "I like system design, making slow things fast, and research. I write about what I learn and build in public.",
+    "I started with Android apps and Spring Boot backends, and I still go deepest on the parts most people skip: auth, caching, load balancing. That plumbing decides whether a system holds up.",
+    "Now my focus is AI agents and automation. AI tools make me faster at things I already understand. They don't replace understanding them.",
+    "I like system design, making slow things fast, and research, with one IEEE paper so far. I build in public and write about it on Substack.",
   ],
   contact: {
     email: "vishalvana592003@gmail.com",
@@ -46,12 +46,38 @@ export const mission = {
   repo: "https://github.com/vishalvana/BackendAsService",
   steps: [
     { label: "Secrets moved out of the repo", done: true },
-    { label: "One-command local setup", done: false },
+    { label: "API keys locked to their own project", done: true },
+    { label: "One-command run + end-to-end smoke test", done: true },
+    { label: "16 unit tests: auth, JWT, data, API keys", done: true },
     { label: "MCP tools: projects, API keys, collections", done: false },
     { label: "MCP tools: documents and app users", done: false },
     { label: "Live demo: Claude builds a backend", done: false },
   ],
 };
+
+// What I build, each backed by projects below (slugs)
+export const capabilities = [
+  {
+    title: "Agents & automation",
+    line: "AI agents wired to real tools through MCP, and jobs that run on their own.",
+    proof: ["mission-control", "baas", "job-aggregator"],
+  },
+  {
+    title: "Backends & APIs",
+    line: "Auth, multi-tenant data, API keys and caching, with tests.",
+    proof: ["baas", "atomicflow", "mini-cache"],
+  },
+  {
+    title: "Scraping & data",
+    line: "Pull data from the web, clean it, and make it searchable.",
+    proof: ["web-scraper", "mern-job-scraper", "job-aggregator"],
+  },
+  {
+    title: "Mobile apps",
+    line: "Flutter and native Android, including apps that set up hardware.",
+    proof: ["nomo-toyz", "medoc-claim", "ridesphere"],
+  },
+];
 
 export const experience = [
   { when: "Aug 2026 – now", what: "Developer L1", where: "BelWo" },
@@ -79,12 +105,13 @@ export const projects: Project[] = [
     slug: "baas",
     name: "BaaS Platform",
     kind: "Backend-as-a-Service",
-    summary: "Multi-tenant backend developers plug into their apps: auth, API keys, JSON storage, email OTP.",
+    summary: "A backend other apps plug into: sign-up, login, API keys and data storage, isolated per project.",
     details: [
       "JWT auth for both platform developers and their app users",
-      "Isolated projects, each with its own API key, users and collections",
+      "Isolated projects, each with its own API key, users and collections; a key only works for its own project",
       "Dynamic JSON document storage on PostgreSQL",
       "Email + OTP verification and per-endpoint API usage tracking",
+      "16 unit tests and an end-to-end smoke test",
       "Next: an MCP server so AI agents can provision backends themselves",
     ],
     stack: ["Java", "Spring Boot", "PostgreSQL", "JWT"],
@@ -94,10 +121,29 @@ export const projects: Project[] = [
     links: [{ label: "Repo", url: "https://github.com/vishalvana/BackendAsService" }],
   },
   {
+    slug: "mission-control",
+    name: "Mission Control",
+    kind: "This site + an MCP server",
+    summary: "A portfolio Claude can read: connect it as an MCP server and ask what I've built.",
+    details: [
+      "Hand-written MCP server (Streamable HTTP) with 5 tools",
+      "Ship log pulled live from GitHub",
+      "Halftone and depth portraits drawn in canvas and WebGL from one photo",
+    ],
+    stack: ["Next.js", "TypeScript", "WebGL", "MCP"],
+    tags: ["agents", "mcp", "frontend", "fullstack"],
+    status: "live",
+    year: "2026",
+    links: [
+      { label: "Repo", url: "https://github.com/vishalvana/mission-control" },
+      { label: "MCP", url: "https://vishalvana.vercel.app/mcp" },
+    ],
+  },
+  {
     slug: "nomo-toyz",
     name: "Nomo Toyz app",
     kind: "IoT mobile app (internship)",
-    summary: "Cross-platform app that onboards ESP32 toys straight from the phone.",
+    summary: "Set up a smart toy from your phone: the app provisions the ESP32 inside it.",
     details: [
       "Built from scratch through the full development cycle",
       "ESP32 hardware provisioning for device onboarding",
@@ -113,7 +159,7 @@ export const projects: Project[] = [
     slug: "atomicflow",
     name: "AtomicFlow",
     kind: "Team task manager",
-    summary: "Full-stack task management for teams, with projects, assignments and role-based access.",
+    summary: "Teams plan projects, assign tasks and track progress, with permissions by role.",
     details: ["Role-based access control", "Projects, tasks and progress tracking", "Separate backend and frontend, both deployed"],
     stack: ["Java", "Spring Boot", "JavaScript"],
     tags: ["backend", "fullstack", "auth"],
@@ -128,7 +174,7 @@ export const projects: Project[] = [
     slug: "job-aggregator",
     name: "Job aggregation platform",
     kind: "Search across job sources",
-    summary: "Collects listings from many sources into one search, with filtering and de-duplication.",
+    summary: "One search across many job sources, with filters and duplicates removed.",
     details: ["Aggregates jobs from multiple sources", "Unified search and filtering", "Duplicate removal and automatic refresh"],
     stack: ["JavaScript"],
     tags: ["scraping", "automation", "search", "fullstack"],
@@ -152,7 +198,7 @@ export const projects: Project[] = [
     slug: "web-scraper",
     name: "Spring Boot web scraper",
     kind: "Page extraction tool",
-    summary: "Give it a URL and get the title, meta, headings, links, images and text back, via UI or REST API.",
+    summary: "Paste a URL, get the page back as structured data: title, meta, headings, links, images, text.",
     details: ["Jsoup-based extraction", "Optional custom CSS selector", "Built-in web UI and a JSON API"],
     stack: ["Java", "Spring Boot", "Jsoup"],
     tags: ["scraping", "automation", "backend", "api"],
@@ -164,7 +210,7 @@ export const projects: Project[] = [
     slug: "mini-cache",
     name: "Mini Cache Engine",
     kind: "In-memory cache",
-    summary: "A cache built from scratch to understand how real ones work: TTL, expiry, hit/miss stats.",
+    summary: "A cache engine built from scratch: TTL expiry, thread-safe storage, hit and miss stats.",
     details: ["Thread-safe storage on ConcurrentHashMap", "Configurable TTL with scheduled cleanup", "Hit and miss statistics over REST"],
     stack: ["Java", "Spring Boot"],
     tags: ["backend", "system-design", "performance"],
@@ -176,7 +222,7 @@ export const projects: Project[] = [
     slug: "medoc-claim",
     name: "Medoc-Claim",
     kind: "Insurance claim system",
-    summary: "Flutter app covering a complete insurance claim workflow.",
+    summary: "The full insurance claim workflow in one Flutter app.",
     details: ["Complete claim workflow", "Built as a Flutter intern assignment"],
     stack: ["Flutter", "Dart"],
     tags: ["mobile", "flutter"],

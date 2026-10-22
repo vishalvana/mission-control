@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { experience, mission, profile, projects, research, statusLabel } from "@/content/profile";
+import { capabilities, experience, mission, profile, projects, research, statusLabel } from "@/content/profile";
 import { getShipLog } from "@/lib/github";
 import { Clocks, DaysLeft } from "@/components/Clocks";
 import { Console } from "@/components/Console";
@@ -110,6 +110,31 @@ export default function Home() {
           <Suspense fallback={<p className="muted">Reading the latest commits…</p>}>
             <ShipLog />
           </Suspense>
+        </section>
+
+        <section className="panel span-12" aria-labelledby="build-h">
+          <div className="panel-head">
+            <h2 id="build-h">What I build</h2>
+            <span>each one backed by real projects</span>
+          </div>
+          <div className="caps">
+            {capabilities.map((c) => (
+              <div key={c.title} className="cap">
+                <h3>{c.title}</h3>
+                <p>{c.line}</p>
+                <p className="proof">
+                  {c.proof.map((slug) => {
+                    const p = projects.find((x) => x.slug === slug);
+                    return p ? (
+                      <a key={slug} href={`#${slug}`}>
+                        {p.name}
+                      </a>
+                    ) : null;
+                  })}
+                </p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="panel span-12" id="projects" aria-labelledby="projects-h">
