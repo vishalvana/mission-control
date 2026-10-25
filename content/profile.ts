@@ -23,7 +23,7 @@ export const profile = {
   location: "India (IST, UTC+5:30)",
   headline: "I build AI agents and automations that do real work.",
   intro:
-    "11 builds so far, from multi-tenant backends to apps that talk to hardware. Now I build AI agents and the backends they run on. Give me the problem; I'll pick the tools.",
+    "12 builds so far, from multi-tenant backends to apps that talk to hardware. Now I build AI agents and the backends they run on. Give me the problem; I'll pick the tools.",
   about: [
     "I started with Android apps and Spring Boot backends, and I still go deepest on the parts most people skip: auth, caching, load balancing. That plumbing decides whether a system holds up.",
     "Now my focus is AI agents and automation. AI tools make me faster at things I already understand. They don't replace understanding them.",
@@ -75,7 +75,7 @@ export const capabilities = [
   {
     title: "Mobile apps",
     line: "Flutter and native Android, including apps that set up hardware.",
-    proof: ["nomo-toyz", "medoc-claim", "ridesphere"],
+    proof: ["kharcha", "nomo-toyz", "medoc-claim", "ridesphere"],
   },
 ];
 
@@ -138,6 +138,24 @@ export const projects: Project[] = [
       { label: "Repo", url: "https://github.com/vishalvana/mission-control" },
       { label: "MCP", url: "https://vishalvana.vercel.app/mcp" },
     ],
+  },
+  {
+    slug: "kharcha",
+    name: "Kharcha",
+    kind: "Personal money buddy (Android)",
+    summary: "I'm bad with money, so I built an app that tells me how much I can spend today, and when to stop.",
+    details: [
+      "Turns bank SMS into a daily safe-to-spend limit that recalculates every day",
+      "Scan & Pay through any UPI app, with today's budget shown before paying",
+      "Offline by design: no server, no internet permission; fingerprint lock and encrypted backups",
+      "Hinglish nudges and a 10 PM day summary",
+      "136 unit tests on the money logic, written test-first",
+    ],
+    stack: ["Flutter", "Dart", "Kotlin", "SQLite"],
+    tags: ["mobile", "flutter", "android", "offline", "personal-finance", "tdd"],
+    status: "shipped",
+    year: "2026",
+    links: [],
   },
   {
     slug: "nomo-toyz",
